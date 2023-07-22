@@ -1,0 +1,21 @@
+html {
+    width: 100%;
+    height: 100%;
+}
+
+
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: black;
+}
+
+#globeViz {
+    width: 50vw;
+    /* 50% of the viewport width */
+    height: 50vh;
+    /* 50% of the viewport height */
+}
