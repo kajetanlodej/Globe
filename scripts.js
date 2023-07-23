@@ -1,4 +1,6 @@
 // scripts.js
+
+
 document.addEventListener("DOMContentLoaded", function () {
     const globeContainer = document.getElementById('globeContainer');
     const world = Globe()
@@ -12,7 +14,6 @@ document.addEventListener("DOMContentLoaded", function () {
         .labelLng(d => d.lng)
         .labelText(d => d.text)
         .labelSize(2) // Adjust label size as needed
-        .labelColor(() => 'rgba(112, 238, 70, 0.8)')
         .labelResolution(1)
         .labelDotRadius(1)
         .labelAltitude(d => d.altitude) // Set label altitude from the data
@@ -29,20 +30,12 @@ document.addEventListener("DOMContentLoaded", function () {
         world.height(height);
     }
 
+    handleRefreshClick();
+
     // Call the resizeGlobe function on page load and window resize
     window.addEventListener('resize', resizeGlobe);
     document.addEventListener('DOMContentLoaded', resizeGlobe);
     window.addEventListener('load', resizeGlobe); // Additional load event to ensure all resources are loaded
-
-    // Function to toggle label color
-    function toggleLabelColor() {
-        const labelColor = 'rgba(255, 0, 0, 0.8)'; // Change this to the desired color
-        world.labelColor(() => labelColor);
-    }
-
-    // Add click event listener to the label toggle
-    const labelToggle = document.getElementById('labelToggle');
-    labelToggle.addEventListener('click', toggleLabelColor);
 
     function makeSyncingRequest() {
         const rpcEndpoint = 'https://idenanode.com';
@@ -60,6 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 throw error;
             });
     }
+
     function handleRefreshClick() {
 
         world.labelColor(() => 'rgba(0, 0, 0, 1)');
@@ -83,5 +77,15 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     }
 
-    labelToggle.addEventListener('click', handleRefreshClick);
+    const refreshInput = document.getElementById('reload');
+    const reloadDiv = document.getElementById('inner-status-icon');
+
+    reloadDiv.addEventListener('click', function () {
+        refreshInput.classList.add('rotate-animation');
+        setTimeout(function () {
+            refreshInput.classList.remove('rotate-animation');
+        }, 500);
+        handleRefreshClick();
+    });
+
 });
