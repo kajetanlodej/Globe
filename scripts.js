@@ -5,12 +5,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const world = Globe()
         (document.getElementById('globeViz'))
         .globeImageUrl('//unpkg.com/three-globe/example/img/earth-dark.jpg')
-        .pointOfView({ lat: 51, lng: 9, altitude: 1.5 }) // aim at Germany
+        .pointOfView({ lat: 51, lng: 9, altitude: 1.6 }) // aim at Germany
         .polygonAltitude(0.05)
         .polygonCapColor(() => 'rgba(144, 191, 246, 0.7)')
         .polygonSideColor(() => 'rgba(0, 0, 0, 0)')
         .polygonCapCurvatureResolution(5)
-        .labelsData([{ lat: 51, lng: 9, text: 'Germany', altitude: 0.05 }]) // Sample label data for Germany
+        .labelsData([{ lat: 51, lng: 9, text: 'Germany', altitude: 0.08 }]) // Sample label data for Germany
         .labelLat(d => d.lat)
         .labelLng(d => d.lng)
         .labelText(d => d.text)
@@ -65,10 +65,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Check if 'syncing' field is true
                 if (data.result.syncing) {
                     // Syncing
-                    world.labelColor(() => 'rgba(255, 172, 66, 0.8)');
+                    world.labelColor(() => '#FFAC1C');
                 } else {
                     // Online
-                    world.labelColor(() => 'rgba(112, 238, 70, 0.8)');
+                    world.labelColor(() => '#66FF00');
                 }
             })
             .catch(error => {
