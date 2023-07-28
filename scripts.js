@@ -1,5 +1,3 @@
-
-
 document.addEventListener("DOMContentLoaded", function () {
     const globeContainer = document.getElementById('globeContainer');
     const world = Globe()
@@ -74,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
             .catch(error => {
                 console.error('Error:', error);
                 // Offline
-                world.labelColor(() => 'rgba(255, 9, 70, 0.93)');
+                world.labelColor(() => '#EF0107');
             });
     }
 
