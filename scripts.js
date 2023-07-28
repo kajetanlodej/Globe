@@ -1,4 +1,3 @@
-// scripts.js
 
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -19,9 +18,10 @@ document.addEventListener("DOMContentLoaded", function () {
         .labelAltitude(d => d.altitude) // Set label altitude from the data
         .polygonStrokeColor(() => '#FFF');
 
-    fetch('./ne_110m_admin.geojson').then(res => res.json()).then(countries => {
-        world.polygonsData(countries.features.filter(d => d.properties.ISO_A2 !== 'AQ'));
-    });
+
+        fetch('./simplifiedmap.geojson').then(res => res.json()).then(countries => {
+            world.polygonsData(countries.features.filter(d => d.properties.ISO_A2 !== 'AQ'));
+        });
 
     function resizeGlobe() {
         const width = globeContainer.offsetWidth;
@@ -87,5 +87,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 500);
         handleRefreshClick();
     });
+
+
+
 
 });
