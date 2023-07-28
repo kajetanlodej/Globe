@@ -5,23 +5,24 @@ document.addEventListener("DOMContentLoaded", function () {
     const world = Globe()
         (document.getElementById('globeViz'))
         .globeImageUrl('//unpkg.com/three-globe/example/img/earth-dark.jpg')
-        .pointOfView({ lat: 51, lng: 9, altitude: 1 }) // aim at Germany
+        .pointOfView({ lat: 51, lng: 9, altitude: 1.5 }) // aim at Germany
+        .polygonAltitude(0.05)
         .polygonCapColor(() => 'rgba(144, 191, 246, 0.7)')
-        .polygonSideColor(() => 'rgba(0, 200, 0, 0.1)')
+        .polygonSideColor(() => 'rgba(0, 0, 0, 0)')
+        .polygonCapCurvatureResolution(5)
         .labelsData([{ lat: 51, lng: 9, text: 'Germany', altitude: 0.05 }]) // Sample label data for Germany
         .labelLat(d => d.lat)
         .labelLng(d => d.lng)
         .labelText(d => d.text)
         .labelSize(2) // Adjust label size as needed
-        .labelResolution(1)
         .labelDotRadius(1)
         .labelAltitude(d => d.altitude) // Set label altitude from the data
         .polygonStrokeColor(() => '#FFF');
 
 
-        fetch('./simplifiedmap.geojson').then(res => res.json()).then(countries => {
-            world.polygonsData(countries.features.filter(d => d.properties.ISO_A2 !== 'AQ'));
-        });
+    fetch('./simplifiedmap.geojson').then(res => res.json()).then(countries => {
+        world.polygonsData(countries.features);
+    });
 
     function resizeGlobe() {
         const width = globeContainer.offsetWidth;
