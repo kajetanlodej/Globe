@@ -154,17 +154,11 @@ body {
 }
 
 @media screen and (max-width: 900px) {
-
-    #outer-online {
-        flex-direction: column;
+    #status-legend {
+    flex-direction: column;
+    align-items: center;
     }
-
-    #outer-synchronizing {
-        flex-direction: column;
+    #globeContainer{
+        margin-top:0px;
     }
-
-    #outer-offline {
-        flex-direction: column;
-    }
-
 }
