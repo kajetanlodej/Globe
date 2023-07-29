@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@200;300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Exa:wght@400&display=swap');
 
 html {
     overflow-y: hidden;
@@ -11,16 +11,16 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #000011;
+    background-color: #010626;
     flex-direction: column;
 }
 
 #labelToggle {
     margin: 10px;
     padding: 1px;
-    font-family: 'Prompt', sans-serif;
+    font-family: 'Lexend Exa', sans-serif;
     color: aliceblue;
-    font-size: 3.2vh;
+    font-size: 2.6vh;
 }
 
 #globeContainer {
@@ -47,7 +47,9 @@ body {
 #outer-status {
     margin: -1px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
 @keyframes rotateAnimation {
@@ -64,26 +66,20 @@ body {
     animation: rotateAnimation 0.5s;
 }
 
-#inner-status-icon {
-    width: 32px;
-    height: 32px;
-    padding: 1vh;
-    margin: 0;
+#outer-status {
+    cursor: pointer;
+    user-select: none;
+    border: solid 1px white;
+    padding: 0.5vh;
+    padding-left: 2vh;
+    padding-right: 2vh;
 }
 
 #outer-status-icon {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0.4vh;
-}
-
-#inner-status-icon:hover {
-    cursor: pointer;
-    margin: -0.1vh;
-    border: 0.1vh solid;
-    border-radius: 0.7vh;
-    border-color: white;
+    padding: 1.5vh;
 }
 
 #globeContainer:hover {
@@ -96,8 +92,10 @@ body {
 
 #status-legend {
     display: flex;
-    width: 50vh;
+    width: 75vh;
     justify-content: space-between;
+    font-family: 'Lexend Exa', sans-serif;
+    font-size: 2.1vh;
 }
 
 #status-text {
@@ -128,42 +126,34 @@ body {
     background-color: #bbb;
     border-radius: 50%;
     display: inline-block;
+    margin: 1.4vh;
 }
 
 #dot-online {
-    background-color: #66FF00;
+    background-color: #00FF00;
 }
 
 #status-online {
-    font-family: 'Prompt', sans-serif;
-    color: #66FF00;
-    font-size: 2vh;
-    margin: 0.5vh;
+    color: #00FF00;
 }
 
 #status-synchronizing {
-    font-family: 'Prompt', sans-serif;
-    color: #FFAC1C;
-    font-size: 2vh;
-    margin: 0.5vh;
+    color: #FF681E;
 }
 
 #dot-synchronizing {
-    background-color: #FFAC1C;
+    background-color: #FF681E;
 }
 
 #status-offline {
-    font-family: 'Prompt', sans-serif;
-    color: #EF0107;
-    font-size: 2vh;
-    margin: 0.5vh;
+    color: #FF000D;
 }
 
 #dot-offline {
-    background-color: #EF0107;
+    background-color: #FF000D;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 900px) {
 
     #outer-online {
         flex-direction: column;

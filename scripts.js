@@ -1,26 +1,46 @@
 document.addEventListener("DOMContentLoaded", function () {
+    let labelfont;
     const globeContainer = document.getElementById('globeContainer');
     const world = Globe()
         (document.getElementById('globeViz'))
         .globeImageUrl('//unpkg.com/three-globe/example/img/earth-dark.jpg')
         .pointOfView({ lat: 51, lng: 9, altitude: 1.6 }) // aim at Germany
         .polygonAltitude(0.05)
-        .polygonCapColor(() => 'rgba(144, 191, 246, 0.7)')
+        .polygonCapColor(() => '#056CF2')
         .polygonSideColor(() => 'rgba(0, 0, 0, 0)')
         .polygonCapCurvatureResolution(5)
-        .labelsData([{ lat: 51, lng: 9, text: 'Germany', altitude: 0.08 }]) // Sample label data for Germany
+        .labelsData([{ lat: 51.5, lng: 10, text: 'Germany', altitude: 0.08, dotradius: 1.2 }]) // Sample label data for Germany
         .labelLat(d => d.lat)
         .labelLng(d => d.lng)
         .labelText(d => d.text)
-        .labelSize(2) // Adjust label size as needed
-        .labelDotRadius(1)
+        .labelSize(1.7) // Adjust label size as needed
+        .labelDotRadius(d => d.dotradius)
         .labelAltitude(d => d.altitude) // Set label altitude from the data
-        .polygonStrokeColor(() => '#FFF');
+        .polygonStrokeColor(() => '#FFF')
+        .backgroundColor('#010626');
+
+    fetch('./font.json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            labelfont = data;
+            // Do something with labelfont here after it has been fetched and processed
+        })
+        .catch(error => {
+            console.error('Error fetching labelfont:', error);
+        });
 
 
     fetch('./simplifiedmap.geojson').then(res => res.json()).then(countries => {
         world.polygonsData(countries.features);
+        world.labelTypeFace(labelfont)
     });
+
+
 
     function resizeGlobe() {
         const width = globeContainer.offsetWidth;
@@ -63,21 +83,21 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Check if 'syncing' field is true
                 if (data.result.syncing) {
                     // Syncing
-                    world.labelColor(() => '#FFAC1C');
+                    world.labelColor(() => '#FF681E');
                 } else {
                     // Online
-                    world.labelColor(() => '#66FF00');
+                    world.labelColor(() => '00FF00');
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
                 // Offline
-                world.labelColor(() => '#EF0107');
+                world.labelColor(() => '#FF000D');
             });
     }
 
     const refreshInput = document.getElementById('reload');
-    const reloadDiv = document.getElementById('inner-status-icon');
+    const reloadDiv = document.getElementById('outer-status');
 
     reloadDiv.addEventListener('click', function () {
         refreshInput.classList.add('rotate-animation');
