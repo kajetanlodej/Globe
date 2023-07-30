@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let labelfont;
     const globeContainer = document.getElementById('globeContainer');
     const globeViz = document.getElementById("globeViz");
-    const world = Globe()
+    const world = Globe({ antialias: false, alpha: false, animateIn: false, waitForGlobeReady: true })
         (document.getElementById('globeViz'))
         .globeImageUrl('//unpkg.com/three-globe/example/img/earth-dark.jpg')
         .pointOfView({ lat: 51, lng: 9, altitude: 1.6 }) // aim at Germany
@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .labelDotRadius(d => d.dotradius)
         .labelAltitude(d => d.altitude) // Set label altitude from the data
         .polygonStrokeColor(() => '#FFF')
-        .backgroundColor('#010626')
+        .backgroundColor('#010626');
 
     fetch('./content/font.json')
         .then(response => {
