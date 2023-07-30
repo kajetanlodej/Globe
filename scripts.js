@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     let labelfont;
     const globeContainer = document.getElementById('globeContainer');
+    const globeViz = document.getElementById("globeViz");
     const world = Globe()
         (document.getElementById('globeViz'))
         .globeImageUrl('//unpkg.com/three-globe/example/img/earth-dark.jpg')
@@ -9,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .polygonCapColor(() => '#056CF2')
         .polygonSideColor(() => 'rgba(0, 0, 0, 0)')
         .polygonCapCurvatureResolution(5)
-        .labelsData([{ lat: 51.5, lng: 10, text: 'Germany', altitude: 0.08, dotradius: 1.2 }]) // Sample label data for Germany
+        .labelsData([{ lat: 51.5, lng: 10, text: 'Germany', altitude: 0.1, dotradius: 1.2 }]) // Sample label data for Germany
         .labelLat(d => d.lat)
         .labelLng(d => d.lng)
         .labelText(d => d.text)
@@ -34,13 +35,10 @@ document.addEventListener("DOMContentLoaded", function () {
             console.error('Error fetching labelfont:', error);
         });
 
-
     fetch('./simplifiedmap.geojson').then(res => res.json()).then(countries => {
         world.polygonsData(countries.features);
         world.labelTypeFace(labelfont)
     });
-
-
 
     function resizeGlobe() {
         const width = globeContainer.offsetWidth;
@@ -106,8 +104,4 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 500);
         handleRefreshClick();
     });
-
-
-
-
 });
