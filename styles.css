@@ -162,6 +162,10 @@ body {
     }
     #globeContainer{
         margin-top:0px;
+        margin-bottom:2px;
+    }
+    #outer-status{
+        margin-bottom:5px;
     }
  
 }
