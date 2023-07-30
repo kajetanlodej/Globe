@@ -1,4 +1,13 @@
 document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById('outer-status').addEventListener('mouseover', function() {
+        var image = document.getElementById('reload');
+        image.src = '/content/refresh-010626.png'; 
+      });
+      document.getElementById('outer-status').addEventListener('mouseout', function() {
+        var image = document.getElementById('reload');
+        image.src = '/content/refresh-white.png'; 
+      });
+
     let labelfont;
     const globeContainer = document.getElementById('globeContainer');
     const globeViz = document.getElementById("globeViz");
@@ -18,9 +27,9 @@ document.addEventListener("DOMContentLoaded", function () {
         .labelDotRadius(d => d.dotradius)
         .labelAltitude(d => d.altitude) // Set label altitude from the data
         .polygonStrokeColor(() => '#FFF')
-        .backgroundColor('#010626');
+        .backgroundColor('#010626')
 
-    fetch('./font.json')
+    fetch('./content/font.json')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -35,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
             console.error('Error fetching labelfont:', error);
         });
 
-    fetch('./simplifiedmap.geojson').then(res => res.json()).then(countries => {
+    fetch('./content/simplifiedmap.geojson').then(res => res.json()).then(countries => {
         world.polygonsData(countries.features);
         world.labelTypeFace(labelfont)
     });

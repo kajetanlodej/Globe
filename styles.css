@@ -20,7 +20,6 @@ body {
     margin: 10px;
     padding: 1px;
     font-family: 'Lexend Exa', sans-serif;
-    color: aliceblue;
     font-size: 2.6vh;
 }
 
@@ -40,10 +39,6 @@ body {
     height: 100%;
 }
 
-#reload {
-    filter: invert(1);
-    user-select: none;
-}
 
 #outer-status {
     margin: -1px;
@@ -51,7 +46,7 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    
+
 }
 
 @keyframes rotateAnimation {
@@ -69,6 +64,7 @@ body {
 }
 
 #outer-status {
+    color: white;
     cursor: pointer;
     user-select: none;
     border: solid 1px white;
@@ -155,17 +151,26 @@ body {
     background-color: #FF000D;
 }
 
+#outer-status:hover {
+    color: #010626;
+    background-color: white;
+    stroke: red;
+    -webkit-text-stroke: 1px #010626;}
+
+
 @media screen and (max-width: 1100px) {
     #status-legend {
-    flex-direction: column;
-    align-items: center;
+        flex-direction: column;
+        align-items: center;
     }
-    #globeContainer{
-        margin-top:0px;
-        margin-bottom:2px;
+
+    #globeContainer {
+        margin-top: 0px;
+        margin-bottom: 2px;
     }
-    #outer-status{
-        margin-bottom:5px;
+
+    #outer-status {
+        margin-bottom: 5px;
     }
- 
+
 }
