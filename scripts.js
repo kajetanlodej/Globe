@@ -1,18 +1,23 @@
+
 document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById('outer-status').addEventListener('mouseover', function() {
+    document.getElementById('outer-status').addEventListener('mouseover', function () {
         var image = document.getElementById('reload');
-        image.src = '/content/refresh-010626.png'; 
-      });
-      document.getElementById('outer-status').addEventListener('mouseout', function() {
+        image.src = '/content/refresh-010626.png';
+    });
+    document.getElementById('outer-status').addEventListener('mouseout', function () {
         var image = document.getElementById('reload');
-        image.src = '/content/refresh-white.png'; 
-      });
+        image.src = '/content/refresh-white.png';
+    });
 
     let labelfont;
     const globeContainer = document.getElementById('globeContainer');
     const globeViz = document.getElementById("globeViz");
-    const world = Globe({ antialias: false, alpha: false, animateIn: false, waitForGlobeReady: true })
+    var height = document.documentElement.clientHeight * 0.7;
+    var width = document.documentElement.clientWidth * 0.9;
+    const world = Globe({ animateIn: false, waitForGlobeReady: true })
         (document.getElementById('globeViz'))
+        .width(width)
+        .height(height)
         .globeImageUrl('//unpkg.com/three-globe/example/img/earth-dark.jpg')
         .pointOfView({ lat: 51, lng: 9, altitude: 1.6 }) // aim at Germany
         .polygonAltitude(0.05)
@@ -50,10 +55,14 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     function resizeGlobe() {
-        const width = globeContainer.offsetWidth;
-        const height = globeContainer.offsetHeight;
-        world.width(width);
-        world.height(height);
+        var height = document.documentElement.clientHeight * 0.7;
+        var width = document.documentElement.clientWidth * 0.9;
+        if (height > 500) {
+            world.height(height);
+
+        }
+        if (height<500) {
+        }
     }
 
     handleRefreshClick();
@@ -113,4 +122,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 500);
         handleRefreshClick();
     });
+
+
 });
