@@ -1,10 +1,10 @@
 
 document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById('outer-status').addEventListener('mouseover', function () {
+    document.getElementById('outer-reload').addEventListener('mouseover', function () {
         var image = document.getElementById('reload');
         image.src = '/content/refresh-010626.png';
     });
-    document.getElementById('outer-status').addEventListener('mouseout', function () {
+    document.getElementById('outer-reload').addEventListener('mouseout', function () {
         var image = document.getElementById('reload');
         image.src = '/content/refresh-white.png';
     });
@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     const refreshInput = document.getElementById('reload');
-    const reloadDiv = document.getElementById('outer-status');
+    const reloadDiv = document.getElementById('outer-reload');
 
     reloadDiv.addEventListener('click', function () {
         refreshInput.classList.add('rotate-animation');

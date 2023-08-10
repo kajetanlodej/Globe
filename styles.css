@@ -4,6 +4,7 @@ html {
     overflow-y: hidden;
     overflow-x: hidden;
     width: 100vw;
+    height: 100vh;
 }
 
 body {
@@ -14,95 +15,18 @@ body {
     height: 100vh;
     background-color: #010626;
     flex-direction: column;
-}
-
-#labelToggle {
-    margin: 10px;
-    padding: 1px;
     font-family: 'Lexend Exa', sans-serif;
-    font-size: 2em;
-}
-
-#globeContainer {
-    margin-top: 2vh;
-    margin-bottom: 3vh;
-    margin-left: 3vh;
-    margin-right: 3vh;
-    height: 70vh;
-}
-
-#outer-status {
-    margin: -1px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    cursor: pointer;
-    user-select: none;
-    border: solid 1px white;
-    padding: 0.5em;
-    padding-left: 1.1em;
-    padding-right: 1.1em;
-}
-
-@keyframes rotateAnimation {
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-.rotate-animation {
-    animation: rotateAnimation 0.5s;
-}
-
-
-
-#outer-status-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1.5vh;
-}
-
-#globeContainer:hover {
-    cursor: grab;
-}
-
-#globeContainer:active {
-    cursor: grabbing;
 }
 
 #status-legend {
     display: flex;
-    overflow:hidden;
-    width: 50%;
+    overflow: hidden;
+    width: 50vw;
     justify-content: space-between;
-    font-family: 'Lexend Exa', sans-serif;
     font-size: 1.6em;
 }
 
-#status-text {
-    margin: -1px;
-}
-
-#outer-online {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-#outer-synchronizing {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-#outer-offline {
+.status-example {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -111,9 +35,7 @@ body {
 .dot {
     height: 25px;
     width: 25px;
-    background-color: #bbb;
     border-radius: 50%;
-    display: inline-block;
     margin: 1.4vh;
 }
 
@@ -141,19 +63,72 @@ body {
     background-color: #FF000D;
 }
 
-#outer-status:hover {
+#globeContainer:hover {
+    cursor: grab;
+}
+
+#globeContainer:active {
+    cursor: grabbing;
+}
+
+#labelToggle {
+    margin: 10px;
+    font-size: 2em;
+}
+
+#globeContainer {
+    margin: 3vh;
+    height: 70vh;
+}
+
+#outer-reload {
+    margin: -1px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    cursor: pointer;
+    user-select: none;
+    border: solid 1px white;
+    padding: 0.5em;
+    padding-left: 1.1em;
+    padding-right: 1.1em;
+}
+
+#outer-reload:hover {
     color: #010626;
     background-color: white;
     -webkit-text-stroke: 1px #010626;
 }
 
+#outer-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5vh;
+}
+
+@keyframes rotateAnimation {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.rotate-animation {
+    animation: rotateAnimation 0.5s;
+}
 
 @media screen and (max-width: 1350px) {
     #status-legend {
-        overflow:hidden;
+        overflow: hidden;
         flex-direction: column;
         align-items: center;
-        margin:0px;
+        margin: 0px;
         margin-bottom: 5px;
     }
 
@@ -162,22 +137,20 @@ body {
         margin-bottom: 2px;
     }
 
-    .dot{
-        margin:6px;
+    .dot {
+        margin: 6px;
     }
-
 }
 
 @media screen and (max-height: 800px) {
     #status-legend {
-
-        order:-4;
-
+        order: -4;
     }
-    #outer-status {
-        flex-shrink: 0; /* Prevent the divs from shrinking */
+
+    #outer-reload {
+        flex-shrink: 0;
         margin: 10px;
-        order: -3; /* Move this div to the top */
-      }
+        order: -3;
+    }
 
 }
