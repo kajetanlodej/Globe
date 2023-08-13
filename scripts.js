@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById('outer-reload').addEventListener('mouseover', function () {
         var image = document.getElementById('reload');
@@ -9,9 +8,6 @@ document.addEventListener("DOMContentLoaded", function () {
         image.src = '/content/refresh-white.png';
     });
 
-    let labelfont;
-    const globeContainer = document.getElementById('globeContainer');
-    const globeViz = document.getElementById("globeViz");
     var height = document.documentElement.clientHeight * 0.7;
     var width = document.documentElement.clientWidth * 0.9;
     const world = Globe({ animateIn: false, waitForGlobeReady: true })
@@ -59,9 +55,8 @@ document.addEventListener("DOMContentLoaded", function () {
         var width = document.documentElement.clientWidth * 0.9;
         if (height > 500) {
             world.height(height);
-
         }
-        if (height<500) {
+        if (height < 500) {
         }
     }
 
@@ -90,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function handleRefreshClick() {
-
+        
         world.labelColor(() => 'rgba(0, 0, 0, 1)');
 
         makeSyncingRequest()
