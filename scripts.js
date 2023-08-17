@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .polygonSideColor(() => 'rgba(0, 0, 0, 0)')
         .polygonCapCurvatureResolution(5)
         .labelsData([
-            { 
+            {
                 lat: 51.5,
                 lng: 10,
                 text: 'Germany',
@@ -37,9 +37,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 altitude: 0.1,
                 dotradius: 1.2,
                 size: 1.75,
-                color: '#000000' 
+                color: '#000000'
             }
-        ])        .labelLat(d => d.lat)
+        ]).labelLat(d => d.lat)
         .labelLng(d => d.lng)
         .labelText(d => d.text)
         .labelSize(d => d.size) // Adjust label size as needed
@@ -62,10 +62,11 @@ document.addEventListener("DOMContentLoaded", function () {
         .catch(error => {
             console.error('Error fetching labelfont:', error);
         });
+        
+        world.labelTypeFace(labelfont)
 
     fetch('./content/simplifiedmap.geojson').then(res => res.json()).then(countries => {
         world.polygonsData(countries.features);
-        world.labelTypeFace(labelfont)
     });
 
     function resizeGlobe() {
@@ -103,15 +104,21 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function handleRefreshClick() {
-        
-        world.labelColor(() => 'rgba(0, 0, 0, 1)');
+
+        //world.labelColor(() => 'rgba(0, 0, 0, 1)');
+
+        world.labelColor(d => {
+            if (d.text === 'Germany' && d.color !== '#000000') {
+                return 'rgba(0, 0, 0, 0.6)'; // Keep the shadow 0.6 opacity on refresh
+            }
+        });
 
         makeSyncingRequest()
             .then(data => {
                 console.log(data);
                 // Determine color based on 'syncing' field
                 const labelColor = data.result.syncing ? '#FF681E' : '00FF00';
-    
+
                 // Update label colors
                 world.labelColor(d => {
                     if (d.text === 'Germany' && d.color !== '#000000') {
@@ -127,7 +134,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 console.error('Error:', error);
                 // Offline color
                 const offlineColor = '#FF000D';
-    
+
                 // Update label colors
                 world.labelColor(d => {
                     if (d.text === 'Germany' && d.color !== '#000000') {
@@ -140,7 +147,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
             });
     }
-    
+
     const refreshInput = document.getElementById('reload');
     const reloadDiv = document.getElementById('outer-reload');
 

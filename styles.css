@@ -90,7 +90,7 @@ body {
     height: 70vh;
 }
 
-#outer-reload {
+.outer-reload {
     margin: -1px;
     display: flex;
     flex-direction: row;
@@ -105,7 +105,7 @@ body {
     padding-right: 1.1em;
 }
 
-#outer-reload:hover {
+.outer-reload:hover {
     color: var(--background);
     background-color: var(--white);
     -webkit-text-stroke: 1px var(--background);
@@ -134,11 +134,18 @@ body {
 
 @media screen and (max-width: 1350px) {
     #status-legend {
+        width: 90%;
         overflow: hidden;
         flex-direction: column;
         align-items: center;
         margin: 0px;
         margin-bottom: 5px;
+        margin-top:2px;
+        font-size: 1.4em;
+    }
+    
+    #labelToggle{
+        font-size: 1.5em;
     }
 
     #globeContainer {
@@ -147,7 +154,7 @@ body {
     }
 
     .dot {
-        margin: 6px;
+        margin: 10px;
     }
 }
 
@@ -156,7 +163,7 @@ body {
         order: -4;
     }
 
-    #outer-reload {
+    .outer-reload {
         flex-shrink: 0;
         margin: 10px;
         order: -3;
