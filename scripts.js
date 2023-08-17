@@ -20,13 +20,32 @@ document.addEventListener("DOMContentLoaded", function () {
         .polygonCapColor(() => '#056CF2')
         .polygonSideColor(() => 'rgba(0, 0, 0, 0)')
         .polygonCapCurvatureResolution(5)
-        .labelsData([{ lat: 51.5, lng: 10, text: 'Germany', altitude: 0.1, dotradius: 1.2 }]) // Sample label data for Germany
-        .labelLat(d => d.lat)
+        .labelsData([
+            { 
+                lat: 51.5,
+                lng: 10,
+                text: 'Germany',
+                altitude: 0.099,
+                dotradius: 1.2,
+                size: 1.7,
+                color: '#0000001' // Set the color to black (#000000) for the first label
+            },
+            { //Background
+                lat: 51.7,
+                lng: 10,
+                text: 'Germany',
+                altitude: 0.1,
+                dotradius: 1.2,
+                size: 1.75,
+                color: '#000000' 
+            }
+        ])        .labelLat(d => d.lat)
         .labelLng(d => d.lng)
         .labelText(d => d.text)
-        .labelSize(1.7) // Adjust label size as needed
+        .labelSize(d => d.size) // Adjust label size as needed
         .labelDotRadius(d => d.dotradius)
         .labelAltitude(d => d.altitude) // Set label altitude from the data
+        .labelColor(d => d.color)
         .polygonStrokeColor(() => '#FFF')
         .backgroundColor('#010626');
 
@@ -39,7 +58,6 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .then(data => {
             labelfont = data;
-            // Do something with labelfont here after it has been fetched and processed
         })
         .catch(error => {
             console.error('Error fetching labelfont:', error);
@@ -91,22 +109,38 @@ document.addEventListener("DOMContentLoaded", function () {
         makeSyncingRequest()
             .then(data => {
                 console.log(data);
-                // Check if 'syncing' field is true
-                if (data.result.syncing) {
-                    // Syncing
-                    world.labelColor(() => '#FF681E');
-                } else {
-                    // Online
-                    world.labelColor(() => '00FF00');
-                }
+                // Determine color based on 'syncing' field
+                const labelColor = data.result.syncing ? '#FF681E' : '00FF00';
+    
+                // Update label colors
+                world.labelColor(d => {
+                    if (d.text === 'Germany' && d.color !== '#000000') {
+                        return 'rgba(0, 0, 0, 0.6)'; // Keep the 'Germany' label black
+                    } else if (d.text === 'Germany') {
+                        return labelColor; // Change color for the 'Another Label'
+                    } else {
+                        return d.color; // Keep other labels' color as is
+                    }
+                });
             })
             .catch(error => {
                 console.error('Error:', error);
-                // Offline
-                world.labelColor(() => '#FF000D');
+                // Offline color
+                const offlineColor = '#FF000D';
+    
+                // Update label colors
+                world.labelColor(d => {
+                    if (d.text === 'Germany' && d.color !== '#000000') {
+                        return 'rgba(0, 0, 0, 0.6)'; // Keep the 'Germany' label black
+                    } else if (d.text === 'Germany') {
+                        return offlineColor; // Change color for the 'Another Label'
+                    } else {
+                        return d.color; // Keep other labels' color as is
+                    }
+                });
             });
     }
-
+    
     const refreshInput = document.getElementById('reload');
     const reloadDiv = document.getElementById('outer-reload');
 
@@ -117,6 +151,5 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 500);
         handleRefreshClick();
     });
-
 
 });

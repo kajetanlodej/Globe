@@ -1,5 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Lexend+Exa:wght@400&display=swap');
 
+:root {
+    --background: #010626;
+    --pane-padding: 5px 42px;
+    --online: #00FF00;
+    --synchronizing: #FF681E;
+    --offline: #FF000D;
+    --white: white;
+}
+
 html {
     overflow-y: hidden;
     overflow-x: hidden;
@@ -13,7 +22,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #010626;
+    background-color: var(--background);
     flex-direction: column;
     font-family: 'Lexend Exa', sans-serif;
 }
@@ -40,27 +49,27 @@ body {
 }
 
 #dot-online {
-    background-color: #00FF00;
+    background-color: var(--online);
 }
 
 #status-online {
-    color: #00FF00;
+    color: var(--online);
 }
 
 #status-synchronizing {
-    color: #FF681E;
+    color: var(--synchronizing);
 }
 
 #dot-synchronizing {
-    background-color: #FF681E;
+    background-color: var(--synchronizing);
 }
 
 #status-offline {
-    color: #FF000D;
+    color: var(--offline)
 }
 
 #dot-offline {
-    background-color: #FF000D;
+    background-color: var(--offline);
 }
 
 #globeContainer:hover {
@@ -87,19 +96,19 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    color: white;
+    color: var(--white);
     cursor: pointer;
     user-select: none;
-    border: solid 1px white;
+    border: solid 1px var(--white);
     padding: 0.5em;
     padding-left: 1.1em;
     padding-right: 1.1em;
 }
 
 #outer-reload:hover {
-    color: #010626;
-    background-color: white;
-    -webkit-text-stroke: 1px #010626;
+    color: var(--background);
+    background-color: var(--white);
+    -webkit-text-stroke: 1px var(--background);
 }
 
 #outer-icon {
