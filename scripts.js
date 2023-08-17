@@ -63,10 +63,9 @@ document.addEventListener("DOMContentLoaded", function () {
             console.error('Error fetching labelfont:', error);
         });
         
-        world.labelTypeFace(labelfont)
-
     fetch('./content/simplifiedmap.geojson').then(res => res.json()).then(countries => {
         world.polygonsData(countries.features);
+        world.labelTypeFace(labelfont);
     });
 
     function resizeGlobe() {
