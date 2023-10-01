@@ -116,8 +116,7 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(data => {
                 console.log(data);
                 // Determine color based on 'syncing' field
-                const labelColor = data.result.syncing ? '#FF681E' : '00FF00';
-
+                const labelColor = data.result.syncing ? '#FF681E' : '#00FF00';
                 // Update label colors
                 world.labelColor(d => {
                     if (d.text === 'Germany' && d.color !== '#000000') {
