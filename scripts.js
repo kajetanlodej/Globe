@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .catch(error => {
             console.error('Error fetching labelfont:', error);
         });
-        
+
     fetch('./content/simplifiedmap.geojson').then(res => res.json()).then(countries => {
         world.polygonsData(countries.features);
         world.labelTypeFace(labelfont);
@@ -146,15 +146,52 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     }
 
+    function animateValue(obj, prefix, start, end, duration) {
+        let startTimestamp = null;
+        const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+            obj.innerText = `${prefix} ${Math.floor(progress * (end - start) + start)}`;
+            if (progress < 1) {
+                window.requestAnimationFrame(step);
+            }
+        };
+        window.requestAnimationFrame(step);
+    }
+
+    function keys() {
+        const apiUrl = `https://api.idena.io/api/address/0x344a09ec5b9b5debc5a889837c50c66c8a78f04d/txs/count`;
+        axios.get(apiUrl)
+            .then((response) => {
+                const transaction = response.data.result - 59;
+                const numberSoldElement = document.getElementById('number-sold-text');
+                document.getElementById("number-sold-number").innerHTML = transaction;
+                // Animate the number from 0 to the final value with the prefix "Api keys sold:"
+                //animateValue(numberSoldElement, 'Api keys sold:', 0, transaction, 2000);
+                //console.log(transaction);
+            })
+            .catch((error) => console.error(error));
+    }
+
+    keys();
+
     const refreshInput = document.getElementById('reload');
     const reloadDiv = document.getElementById('outer-reload');
-
+    const keysSold = document.getElementById('number-sold-number')
     reloadDiv.addEventListener('click', function () {
         refreshInput.classList.add('rotate-animation');
         setTimeout(function () {
             refreshInput.classList.remove('rotate-animation');
         }, 500);
         handleRefreshClick();
+        keysSold.setAttribute("style", "color:black;")
+        keys();
+        setTimeout(function () {
+            keysSold.setAttribute("style", "color:white;")
+
+        }, 100);
     });
+
+
 
 });
