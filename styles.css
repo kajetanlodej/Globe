@@ -126,7 +126,7 @@ body {
     font-size: 1.4em;
     color: white;
     align-items: center;
-    margin-top:10px;
+    margin-top: 10px;
 }
 
 #sold-keys-reload {
@@ -173,9 +173,12 @@ body {
     }
 }
 
-@media screen and (max-height: 800px) {
+@media screen and (max-height: 865px) {
     #status-legend {
         order: -4;
+        font-size: 1em;
+        flex-direction: row;
+
     }
 
     .outer-reload {
@@ -183,8 +186,22 @@ body {
         margin: 10px;
         order: -3;
     }
-    #sold-keys{
-        display:none;
+
+    #sold-keys {
+        order: -4;
+        font-size: 1.2em;
+        margin:0px;
+
+    }
+
+    .status-example{
+        flex-direction: column;
+    }
+    .dot{
+        height: 25px;
+        width: 25px;
+        border-radius: 50%;
+        margin: 1.4vh;
     }
 
 }
