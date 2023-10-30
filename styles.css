@@ -129,6 +129,7 @@ body {
     color: white;
     align-items: center;
     margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 #sold-keys-reload {
