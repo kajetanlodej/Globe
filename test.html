@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Idena Sign-In Demo</title>
+</head>
+<body>
+  <h1>Idena Sign-In Demo</h1>
+  <button id="signInButton">Sign In</button>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const signInButton = document.getElementById('signInButton');
+
+      signInButton.addEventListener('click', async () => {
+        try {
+          const startSessionUrl = 'https://your-backend-url.com/start-session'; // Replace with your back-end URL
+          const authenticateUrl = 'https://your-backend-url.com/authenticate'; // Replace with your back-end URL
+
+          // Start session to get nonce
+          const startSessionResponse = await axios.post(startSessionUrl, {
+            token: 'your-token', // Replace with your actual token
+            address: 'your-address', // Replace with your Idena address
+          });
+
+          if (startSessionResponse.data.success) {
+            const nonce = startSessionResponse.data.data.nonce;
+
+            // Simulate user signing the nonce
+            const signature = 'your-signature'; // Replace with a proper signature
+
+            // Authenticate with the signature
+            const authenticateResponse = await axios.post(authenticateUrl, {
+              token: 'your-token', // Replace with your actual token
+              signature: signature,
+            });
+
+            if (authenticateResponse.data.success) {
+              alert('Sign-in successful! Redirecting...');
+              // Here, you can implement the logic to redirect the user to your desired page
+            } else {
+              alert('Sign-in failed.');
+            }
+          } else {
+            alert('Failed to start session.');
+          }
+        } catch (error) {
+          console.error('Error:', error);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
